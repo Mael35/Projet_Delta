@@ -6,5 +6,5 @@
 * Les commit lier au correction de bug : "Fix : ..." 
 
 ## Convention de commit
-* La branch "back" contient le code lié au backend en java avec le framework Spring
-* Frontend : "front" contient le code lié au front en ReactJS
+* La branche "back" contient le code lié au backend en java avec le framework Spring
+* La branche "front" contient le code lié au front en ReactJS
