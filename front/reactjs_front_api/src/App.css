@@ -11,10 +11,10 @@
 
 .App-header {
   background-color: #ffffff;
-  min-height: 100vh;
+  min-height: 40vh;
   display: flex;
   flex-direction: column;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(10px + 1vmin);
   color: black;
 }
 
@@ -22,6 +22,15 @@
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
+  font-size: calc(10px + 1vmin);
+  color: black;
+}
+
+.App-AutocompleteCategory{
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
   font-size: calc(10px + 2vmin);
   color: black;
+  width: 300;
 }
