@@ -1,12 +1,11 @@
 import './App.css';
-
 import { useEffect, useState } from 'react';
-
-import TextField from '@material-ui/core/TextField';
-import AutocompleteCategory from '@material-ui/lab/Autocomplete';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
+
+import Category from './components/Category/Category';
+import './components/Category/category.css';
 
 import NewCategory from './components/newCategory/NewCategory';
 import './components/newCategory/newcategory.css';
@@ -16,13 +15,18 @@ function App() {
 
   const [allCategories, setAllCategories] = useState([
     {
-      "id": 1,
-      "categoryName": "categoryName1",
+      id: 1,
+      name: "Categorie à selectionner",
     },
 
     {
-      "id": 2,
-      "categoryName": "categoryName2",
+      id: 2,
+      name: "categoryName1",
+    },
+
+    {
+      id: 3,
+      name: "categoryName2",
     }
   ]);
   
@@ -32,22 +36,6 @@ function App() {
 
   const [postingCategory, setPostingCategory] = useState(false);
   const [inputInvalid, setInputInvalid] = useState(false);
-
-  const [myOptions, setMyOptions] = useState([])
-  
-  const getDataFromAPI = () => {
-    console.log("Options Fetched from API")
-  
-    fetch('http://localhost:8080/api/private/category').then((response) => {
-      return response.json()
-    }).then((res) => {
-      console.log(res.data)
-      for (var i = 0; i < res.data.length; i++) {
-        myOptions.push(res.data[i].categoryName)
-      }
-      setMyOptions(myOptions)
-    })
-  }
   
   useEffect(() => {
     fetch('http://localhost:8080/api/private/category')
@@ -122,18 +110,8 @@ function App() {
       <Header />
 
       <main>
-        <AutocompleteCategory
-            freeSolo
-            autoComplete
-            autoHighlight
-            options={myOptions}
-            renderInput={(params) => (
-              <TextField {...params}
-                onChange={getDataFromAPI}
-                variant="outlined"
-                label="Categories"
-              />
-            )}
+        <Category
+          data={allCategories}
         />
         
         <NewCategory 

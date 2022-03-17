@@ -1,7 +1,5 @@
 export default function NewProduct(props) {
 
-    // the inputs are controled by the state in App.js
-
     return (
         <div className="newCategory__form">
             <h3 className="newCategory__title" >Ajouter une categorie</h3>
