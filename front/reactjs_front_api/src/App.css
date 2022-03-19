@@ -26,11 +26,12 @@
   color: black;
 }
 
-.App-AutocompleteCategory{
-  background-color: #ffffff;
+.Ajouts {
   display: flex;
-  flex-direction: column;
-  font-size: calc(10px + 2vmin);
-  color: black;
-  width: 300;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 50%;
+    margin: 10px auto;
+    position: relative;
+    text-align:center;
 }
