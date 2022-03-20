@@ -23,7 +23,15 @@ public class ThemeService {
         if (result.isPresent())
             return result.get();
         else
-            throw new Exception();
+            throw new Exception("id not found");
+    }
+
+    public Theme getThemeByName(String name) throws Exception {
+        Theme result = themeRepository.findByName(name);
+        if (result!= null)
+            return result;
+        else
+            throw new Exception("Cannot find by name " + name);
     }
 
     public Theme createTheme(Theme theme) throws Exception {

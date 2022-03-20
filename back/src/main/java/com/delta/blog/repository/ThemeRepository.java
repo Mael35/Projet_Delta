@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface ThemeRepository extends CrudRepository<Theme, Integer> {
 
-    public Iterable<Theme> findByName(String name);
+    public Theme findByName(String name);
 
     public boolean existsThemeByName(String name);
     

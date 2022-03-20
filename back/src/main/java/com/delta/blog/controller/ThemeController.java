@@ -38,6 +38,16 @@ public class ThemeController {
         }
     }
 
+    @GetMapping("/name/{theme_name}")
+    public ResponseEntity getThemeByName(@PathVariable("theme_name") String name) {
+        try {
+            final Theme theme = themeService.getThemeByName(name);
+            return new ResponseEntity<Theme>(theme, HttpStatus.OK);
+        } catch (final Exception e) {
+            return new ResponseEntity<String>("Theme not found " + e, HttpStatus.NOT_FOUND);
+        }
+    }
+
     @PostMapping("")
     public ResponseEntity<Theme> addTheme(@RequestBody Theme theme) {
         try {
