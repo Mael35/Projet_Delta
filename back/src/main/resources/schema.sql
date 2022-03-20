@@ -10,12 +10,12 @@ CREATE TABLE posts (
     title VARCHAR(255) NOT NULL,
     author VARCHAR(255) NOT NULL,
     content VARCHAR(MAX) NOT NULL,
-    created_at DATETIME NOT NULL,
+    created_at DATETIME NOT NULL
 );
 
 DROP TABLE IF EXISTS posts_themes;
 CREATE TABLE posts_themes (
     post_id INTEGER NOT NULL,
     themes_id INTEGER NOT NULL,
-    PRIMARY KEY (post_id, theme_id)
+    PRIMARY KEY (post_id, themes_id)
 );
