@@ -4,9 +4,6 @@ import javax.persistence.Entity;
 
 import java.util.Date;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
@@ -14,14 +11,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "posts")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Post {
 
     @Id
@@ -35,12 +34,9 @@ public class Post {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date created_at;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = { 
-            CascadeType.PERSIST, CascadeType.MERGE })
-    @JoinTable(name = "posts_themes", joinColumns = {
-            @JoinColumn(name = "posts_id") }, 
-                inverseJoinColumns = { @JoinColumn(name = "theme_id") })
-    private List<Theme> listOfThemes = new ArrayList<>();
+    @ManyToOne(cascade = { CascadeType.MERGE }, fetch = FetchType.LAZY)
+    @JoinColumn(name = "theme_id", nullable = false)
+    private Theme theme;
 
     public Integer getId() {
         return id;
@@ -82,12 +78,12 @@ public class Post {
         this.content = content;
     }
 
-    public List<Theme> getThemes() {
-        return listOfThemes;
+    public Theme getTheme() {
+        return theme;
     }
 
-    public void setThemes(List<Theme> themes) {
-        this.listOfThemes = themes;
+    public void setTheme(Theme themes) {
+        this.theme = themes;
     }
     
 }

@@ -1,6 +1,8 @@
 package com.delta.blog.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +10,7 @@ import java.util.List;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,7 +22,8 @@ public class Theme {
     private Integer id;
     private String name;
 
-    @ManyToMany(mappedBy = "listOfThemes")
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = com.delta.blog.model.Post.class , cascade = {
+            CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE }, mappedBy = "theme")
     private List<Post> listOfposts = new ArrayList<>();
 
     public Integer getId() {
@@ -45,16 +48,6 @@ public class Theme {
 
     public void setArticles(List<Post> posts) {
         this.listOfposts = posts;
-    }
-
-    public void addArticle(Post post) {
-        this.listOfposts.add(post);
-        post.getThemes().add(this);
-    }
-
-    public void removeArticle(Post post) {
-        this.listOfposts.remove(post);
-        post.getThemes().remove(this);
     }
     
 }
