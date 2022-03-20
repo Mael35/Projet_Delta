@@ -26,24 +26,20 @@ public class Post {
 
     @Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
-	@Column( name = "id" )
     private Integer id;
-
-    @Column( name = "title")
     private String title;
-
-    @Column( name = "author")
     private String author;
-
-    @Column( name = "content")
     private String content;
 
     @Column(name = "created_at")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date date;
+    private Date created_at;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE })
-    @JoinTable(name = "posts_themes", joinColumns = { @JoinColumn(name = "posts_id") }, inverseJoinColumns = { @JoinColumn(name = "theme_id") })
+    @ManyToMany(fetch = FetchType.LAZY, cascade = { 
+            CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinTable(name = "posts_themes", joinColumns = {
+            @JoinColumn(name = "posts_id") }, 
+                inverseJoinColumns = { @JoinColumn(name = "theme_id") })
     private List<Theme> listOfThemes = new ArrayList<>();
 
     public Integer getId() {
@@ -71,11 +67,11 @@ public class Post {
     }
 
     public Date getDate() {
-        return date;
+        return created_at;
     }
 
     public void setDate(Date date) {
-        this.date = date;
+        this.created_at = date;
     }
 
     public String getContent() {

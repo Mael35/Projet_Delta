@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,13 +17,10 @@ public class Theme {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Integer id;
-
-    @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "themes")
+    @ManyToMany(mappedBy = "listOfThemes")
     private List<Post> listOfposts = new ArrayList<>();
 
     public Integer getId() {
