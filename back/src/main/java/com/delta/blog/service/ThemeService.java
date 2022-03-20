@@ -25,4 +25,18 @@ public class ThemeService {
         else
             throw new Exception();
     }
+
+    public Theme createTheme(Theme theme) throws Exception {
+        if (themeRepository.existsThemeByName(theme.getName()))
+            throw new Exception("probably already exists");
+        return themeRepository.save(theme);
+    }
+
+    public void deleteTheme(int id) throws Exception {
+        try {
+            themeRepository.deleteById(id);
+        } catch (final Exception e) {
+            throw new Exception("Theme does not exist");
+        }
+    }
 }

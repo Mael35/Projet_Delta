@@ -1,6 +1,7 @@
 package com.delta.blog.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 
@@ -20,6 +21,7 @@ public class Theme {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(name="name")
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = com.delta.blog.model.Post.class , cascade = {
