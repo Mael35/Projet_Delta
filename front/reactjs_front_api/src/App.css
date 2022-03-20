@@ -1,0 +1,37 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.App-logo {
+  height: 20vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #ffffff;
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10px + 1vmin);
+  color: black;
+}
+
+.App-footer{
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10px + 1vmin);
+  color: black;
+}
+
+.Ajouts {
+  display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 50%;
+    margin: 10px auto;
+    position: relative;
+    text-align:center;
+}
