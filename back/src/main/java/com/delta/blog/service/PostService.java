@@ -43,7 +43,7 @@ public class PostService {
         try {
             Theme theme = themeService.getTheme(_post.theme_id);
             post.setTheme(theme);
-        } catch (final Exception e) {
+        } catch (Exception e) {
             throw new Exception(e);
         }
         post.setTitle(_post.title);
@@ -59,6 +59,28 @@ public class PostService {
         } catch (final Exception e) {
             throw new Exception(e);
         }
+    }
+
+    public static class UpdatedPost {
+        public int theme_id;
+        public String title;
+        public String author;
+        public String content;
+    }
+
+    public Post updatePost(int id, final UpdatedPost updatedPost) throws Exception {
+        final Post post = getPost(id);
+            try {
+                final Theme theme = themeService.getTheme(updatedPost.theme_id) ;
+                post.setTheme(theme);
+            } catch (final Exception e) {
+                throw new Exception(e);
+            }
+        post.setTitle(updatedPost.title);
+        post.setAuthor(updatedPost.author);
+        post.setContent(updatedPost.content);
+        post.setDate(new Date());
+        return postRepository.save(post);
     }
     
 }

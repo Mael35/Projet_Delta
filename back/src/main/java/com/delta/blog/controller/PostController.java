@@ -1,9 +1,9 @@
 package com.delta.blog.controller;
 
 import com.delta.blog.model.Post;
-import com.delta.blog.model.Theme;
 import com.delta.blog.service.PostService;
 import com.delta.blog.service.ThemeService;
+import com.delta.blog.service.PostService.UpdatedPost;
 import com.delta.blog.service.PostService._Post;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,6 +51,17 @@ public class PostController {
             return new ResponseEntity<Post>(newPost, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<Exception>(e, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PutMapping("/{post_id}")
+    public ResponseEntity putArticle(@PathVariable("post_id") int id,
+            @RequestBody UpdatedPost updatedPost) throws Exception {
+        try {
+            Post newPost = postService.updatePost(id, updatedPost);
+            return new ResponseEntity<Post>(newPost, HttpStatus.OK);
+        } catch (final Exception e) {
+            return new ResponseEntity<String>("Article not found", HttpStatus.NOT_FOUND);
         }
     }
 
